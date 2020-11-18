@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pps-nicohnavarro": {
+      "hosting": {
+        "laboratorioIV": [
+          "pps-nicohnavarro"
+        ]
+      }
+    }
+  }
+}
