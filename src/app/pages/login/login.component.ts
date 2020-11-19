@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     }, 3000);
   }
 
+  
   getUserLogin(user:User){
     this.toastClasses = "bg-success text-light"
     this.toastCallBack();

@@ -11,6 +11,7 @@ import { ToastComponent } from '../shared/toast/toast.component';
 })
 export class FormUsuarioComponent implements OnInit {
   @Input() isLogin: boolean;
+  @Input() isAdmin: boolean;
   formRegister: FormGroup;
   email: FormControl;
   password: FormControl;
@@ -44,9 +45,15 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.isAdmin){
+      this.type.setValue('Admin');
+    }
   }
 
   onSubmit() {
+    if(this.isAdmin){
+      this.type.setValue('Admin');
+    }
     let user: User = {
       email: this.formRegister.value.Email,
       password: this.formRegister.value.Password,
@@ -54,6 +61,38 @@ export class FormUsuarioComponent implements OnInit {
       isActive: true
     }
     this.userRegister.emit(user);
+  }
+
+  onChange(option) {
+    switch (option) {
+      case 'Admin1':
+        this.email.setValue("admin@admin.com");
+        this.password.setValue('123123');
+        break;
+      case 'Admin2':
+        this.email.setValue("admin2@admin.com");
+        this.password.setValue('123123');
+        break;
+      case 'Student1':
+        this.email.setValue("student@student.com");
+        this.password.setValue('123123');
+        break;
+      case 'Student2':
+        this.email.setValue("student2@student.com");
+        this.password.setValue('123123');
+        break;
+      case 'Professor1':
+        this.email.setValue("professor@professor.com");
+        this.password.setValue('123123');
+        break;
+      case 'Profesor2':
+        this.email.setValue("professor2@professor.com");
+        this.password.setValue('123123');
+        break;
+
+      default:
+        break;
+    }
   }
 
   onLogin() {

@@ -17,6 +17,9 @@
         <li class="nav-item" *ngIf="user && user.type == 'Admin'">
           <a class="nav-link"  routerLink="/addSubject"  routerLinkActive="active">Add Subjects</a>
         </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Admin'">
+          <a class="nav-link"  routerLink="/home/addAdmin"  routerLinkActive="active">Add Admin</a>
+        </li>
         <li class="nav-item" *ngIf="user && user.type == 'Student'">
           <a class="nav-link"  routerLink="/home/inscription"  routerLinkActive="active">Inscription Subject</a>
         </li>

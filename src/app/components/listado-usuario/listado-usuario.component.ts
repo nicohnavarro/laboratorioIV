@@ -1,7 +1,5 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { openSync } from 'fs';
-import { from } from 'rxjs';
 import { User } from 'src/app/data/model/user';
 import { DatabaseService } from 'src/app/data/services/database.service';
 

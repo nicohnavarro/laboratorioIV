@@ -29,6 +29,7 @@ import { AddSubjectComponent } from './pages/add-subject/add-subject.component';
 import { ComboProfesorComponent } from './components/profesor/combo-profesor/combo-profesor.component';
 import { ListadoUsuarioComponent } from './components/listado-usuario/listado-usuario.component';
 import { AgregarMateriaComponent } from './components/alumno/agregar-materia/agregar-materia.component';
+import { AddAdminComponent } from './components/add-admin/add-admin.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AgregarMateriaComponent } from './components/alumno/agregar-materia/agr
     AddSubjectComponent,
     ComboProfesorComponent,
     ListadoUsuarioComponent,
-    AgregarMateriaComponent
+    AgregarMateriaComponent,
+    AddAdminComponent
   ],
   imports: [
     BrowserModule,

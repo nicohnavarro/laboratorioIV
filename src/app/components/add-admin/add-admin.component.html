@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="card">
+        <app-form-usuario [isLogin]="false" [isAdmin]="true" (userRegister)="getUserRegister($event)"></app-form-usuario>
+    </div>
+</div>
+
+<app-toast [show]=toastShow [classes]="toastClasses"></app-toast>

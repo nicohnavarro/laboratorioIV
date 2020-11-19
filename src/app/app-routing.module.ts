@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { AgregarMateriaComponent } from './components/alumno/agregar-materia/agregar-materia.component';
 import { ListadoUsuarioComponent } from './components/listado-usuario/listado-usuario.component';
 import { AltaMateriaComponent } from './components/materia/alta-materia/alta-materia.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'home',component:HomeComponent,children:[
     {path:'listSubjects',component:ListadoMateriaComponent, canActivate:[AdminGuard]},
+    {path:'addAdmin',component:AddAdminComponent, canActivate:[AdminGuard]},
     {path:'listUsers',component:ListadoUsuarioComponent, canActivate:[AdminGuard]},
     {path:'inscription',component:AgregarMateriaComponent, canActivate:[AlumnoGuard]},
   ]},
