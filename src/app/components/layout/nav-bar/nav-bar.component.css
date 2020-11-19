@@ -1,0 +1,6 @@
+.user_controls{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+    margin-right: 0;
+}

@@ -1,0 +1,9 @@
+<app-nav-bar [user]="currentUser"></app-nav-bar>
+
+<div class="container">
+    <div class="card">
+        <app-form-usuario [isLogin]="false" (userRegister)="getUserRegister($event)"></app-form-usuario>
+    </div>
+</div>
+
+<app-toast [show]=toastShow [classes]="toastClasses"></app-toast>

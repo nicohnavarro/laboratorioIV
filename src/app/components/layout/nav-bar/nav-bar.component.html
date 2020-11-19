@@ -1,1 +1,40 @@
-<p>nav-bar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">UTN-FRA</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" aria-controls="appNavigation"
+    aria-expanded="!isCollapsed" aria-label="Toggle navigation" (click)="toggleMenu()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-between" id="appNavigation" [ngbCollapse]="isCollapsed">
+    <div class="principal">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link"  routerLink="/home"routerLinkActive="active">Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/login"  routerLinkActive="active">Signature</a>
+        </li>
+      </ul>
+    </div>
+    <div class="user_controls" *ngIf="!user">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+      </ul>
+    </div>
+    <div class="user_controls" *ngIf="user">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active">{{user.email}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
