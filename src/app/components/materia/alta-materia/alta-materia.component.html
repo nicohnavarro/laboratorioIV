@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12 col-md-offset-3">
+    <form [formGroup]="formRegister" (validSubmit)="onSubmit()">
+      <div class="form-group" [customErrorMessages]="customErrorMessages">
+        <label class="control-label">Name</label>
+        <input type="text" class="form-control" formControlName="Name" required>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Quotas</label>
+        <input type="number" class="form-control" formControlName="Quotas" required>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Term</label>
+        <select class="form-control" formControlName="Term">
+          <option>FIRST</option>
+          <option>SECOND</option>
+        </select>
+      </div>
+      <div class="profesor">
+        <app-combo-profesor [listaProfesores]="listaProfes" (selectedProfessor)="getProfessor($event)">
+        </app-combo-profesor>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-default" type="button" (click)="onReset()">Reset</button>
+        <button class="btn btn-primary pull-right" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

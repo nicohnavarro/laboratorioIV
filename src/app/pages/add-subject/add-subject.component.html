@@ -1,0 +1,9 @@
+<app-nav-bar [user]="currentUser"></app-nav-bar>
+
+<div class="container">
+    <div class="card">
+        <app-alta-materia (subjectRegister)="getSubject($event)"></app-alta-materia>
+    </div>
+</div>
+
+<app-toast [show]=toastShow [classes]="toastClasses"></app-toast>

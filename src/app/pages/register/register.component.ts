@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
     });
     if (cred) {
       user.id = cred.user.uid;
+      await this.dbSvc.CreateOne(user, 'Users');
       switch (user.type) {
         case 'Admin':
           let user_ok = await this.dbSvc.CreateOne(user, 'Admins');

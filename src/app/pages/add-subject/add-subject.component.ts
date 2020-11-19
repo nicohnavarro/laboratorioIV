@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/data/model/user';
+import { Subject } from 'src/app/data/model/subject';
+
 import { AuthService } from 'src/app/data/services/auth.service';
 import { DatabaseService } from 'src/app/data/services/database.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-add-subject',
+  templateUrl: './add-subject.component.html',
+  styleUrls: ['./add-subject.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AddSubjectComponent implements OnInit {
 
   currentUser;
   toastShow: boolean;
@@ -28,17 +29,12 @@ export class LoginComponent implements OnInit {
     }, 3000);
   }
 
-  getUserLogin(user:User){
-    this.toastClasses = "bg-success text-light"
-    this.toastCallBack();
-    this.authSvc.signIn(user).then(()=>{
-      let idCurrentUser = this.authSvc.user.uid;
-      this.dbSvc.GetOne('Users',idCurrentUser).then((data)=>{
-        this.currentUser= data;
-        this.authSvc.user=data;
-        this.router.navigate(['/home']);
-      });
-
+  getSubject(subject:Subject){
+    console.log(subject);
+    this.dbSvc.CreateOne(subject,'Subjects').then(()=>{
+      this.toastClasses = "bg-success text-light"
+      this.toastCallBack();
     });
   }
+
 }

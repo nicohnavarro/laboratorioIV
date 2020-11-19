@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">UTN-FRA</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="color: orange;font-weight: 700;">UTN-FRA</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" aria-controls="appNavigation"
     aria-expanded="!isCollapsed" aria-label="Toggle navigation" (click)="toggleMenu()">
     <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,19 @@
           <a class="nav-link"  routerLink="/home"routerLinkActive="active">Home </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/login"  routerLinkActive="active">Signature</a>
+          <a class="nav-link"  routerLink="/login"  routerLinkActive="active">Subjects</a>
+        </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Admin'">
+          <a class="nav-link"  routerLink="/addSubject"  routerLinkActive="active">Add Subjects</a>
+        </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Student'">
+          <a class="nav-link"  routerLink="/home/inscription"  routerLinkActive="active">Inscription Subject</a>
+        </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Admin'">
+          <a class="nav-link"  routerLink="/home/listSubjects"  routerLinkActive="active">List Subjects</a>
+        </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Admin'">
+          <a class="nav-link"  routerLink="/home/listUsers"  routerLinkActive="active">List Users</a>
         </li>
       </ul>
     </div>
@@ -32,7 +44,7 @@
           <a class="nav-link" routerLink="/profile" routerLinkActive="active">{{user.email}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/register" routerLinkActive="active">Register</a>
+          <a class="nav-link"  routerLink="/register" routerLinkActive="active" style="color: white;">{{user.type}}</a>
         </li>
       </ul>
     </div>

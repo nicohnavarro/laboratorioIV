@@ -24,6 +24,11 @@ import { ToastComponent } from './components/shared/toast/toast.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AltaMateriaComponent } from './components/materia/alta-materia/alta-materia.component';
+import { AddSubjectComponent } from './pages/add-subject/add-subject.component';
+import { ComboProfesorComponent } from './components/profesor/combo-profesor/combo-profesor.component';
+import { ListadoUsuarioComponent } from './components/listado-usuario/listado-usuario.component';
+import { AgregarMateriaComponent } from './components/alumno/agregar-materia/agregar-materia.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,12 @@ import { AngularFireModule } from '@angular/fire';
     FormUsuarioComponent,
     AlertComponent,
     ToastComponent,
-    RegisterComponent
+    RegisterComponent,
+    AltaMateriaComponent,
+    AddSubjectComponent,
+    ComboProfesorComponent,
+    ListadoUsuarioComponent,
+    AgregarMateriaComponent
   ],
   imports: [
     BrowserModule,

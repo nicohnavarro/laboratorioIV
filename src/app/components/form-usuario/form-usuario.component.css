@@ -2,3 +2,6 @@
     display: flex;
     justify-content: center;
 }
+button{
+    margin-right: 1rem;
+}

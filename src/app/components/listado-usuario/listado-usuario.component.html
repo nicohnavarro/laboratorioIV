@@ -1,5 +1,5 @@
 <div class="card" style="margin: 1rem; padding: 1rem;">
-    <!-- <form>
+    <form>
         <div class="form-group form-inline">
             Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
         </div>
@@ -12,32 +12,29 @@
               <option>Professor</option>
             </select>
           </div>
-      </form> -->
+      </form>
       
       <table class="table table-striped">
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Quotas</th>
-          <th scope="col">Term</th>
-          <th scope="col">Professor</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Type</th>
+          <!-- <th scope="col">Population</th> -->
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let subject of subjects; index as i" (click)="seleccionoMateria(subject)">
+        <tr *ngFor="let usuario of usuarios; index as i">
           <th scope="row">{{ i + 1 }}</th>
           <td>
             <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
-            <ngb-highlight [result]="subject.name" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="usuario.email" [term]="filter.value"></ngb-highlight>
           </td>
-          <td><ngb-highlight [result]="subject.quotas | number" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="usuario.password | number" [term]="filter.value"></ngb-highlight></td>
           <!-- <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td> -->
           <td>
-              <ngb-highlight [result]="subject.term" [term]="filter.value"></ngb-highlight>
-            </td>
-          <td>
-              <ngb-highlight [result]="subject.profesor.email" [term]="filter.value"></ngb-highlight>
+              <ngb-highlight [result]="usuario.type" [term]="filter.value"></ngb-highlight>
             </td>
         </tr>
         </tbody>
