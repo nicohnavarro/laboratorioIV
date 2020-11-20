@@ -11,9 +11,6 @@
         <li class="nav-item active">
           <a class="nav-link"  routerLink="/home"routerLinkActive="active">Home </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="/login"  routerLinkActive="active">Subjects</a>
-        </li>
         <li class="nav-item" *ngIf="user && user.type == 'Admin'">
           <a class="nav-link"  routerLink="/addSubject"  routerLinkActive="active">Add Subjects</a>
         </li>
@@ -22,6 +19,9 @@
         </li>
         <li class="nav-item" *ngIf="user && user.type == 'Student'">
           <a class="nav-link"  routerLink="/home/inscription"  routerLinkActive="active">Inscription Subject</a>
+        </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Student'">
+          <a class="nav-link"  routerLink="/home/mySubjects"  routerLinkActive="active">My Subjects</a>
         </li>
         <li class="nav-item" *ngIf="user && user.type == 'Admin'">
           <a class="nav-link"  routerLink="/home/listSubjects"  routerLinkActive="active">List Subjects</a>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule,NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +30,8 @@ import { ComboProfesorComponent } from './components/profesor/combo-profesor/com
 import { ListadoUsuarioComponent } from './components/listado-usuario/listado-usuario.component';
 import { AgregarMateriaComponent } from './components/alumno/agregar-materia/agregar-materia.component';
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
+import { MySubjectsComponent } from './components/alumno/my-subjects/my-subjects.component';
+import { CantidadAlumnosDirective } from './directives/cantidad-alumnos.directive';
 
 @NgModule({
   declarations: [
@@ -54,11 +56,14 @@ import { AddAdminComponent } from './components/add-admin/add-admin.component';
     ComboProfesorComponent,
     ListadoUsuarioComponent,
     AgregarMateriaComponent,
-    AddAdminComponent
+    AddAdminComponent,
+    MySubjectsComponent,
+    CantidadAlumnosDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
@@ -69,7 +74,7 @@ import { AddAdminComponent } from './components/add-admin/add-admin.component';
   providers: [{
     provide: CUSTOM_ERROR_MESSAGES,
     useValue: CUSTOM_ERRORS,
-    multi: true
+    multi: true,
   }],
   bootstrap: [AppComponent]
 })

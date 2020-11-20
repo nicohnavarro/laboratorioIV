@@ -31,7 +31,7 @@
             <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
             <ngb-highlight [result]="subject.name" [term]="filter.value"></ngb-highlight>
           </td>
-          <td><ngb-highlight [result]="subject.quotas | number" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight  appCantidadAlumnos [result]="subject.quotas | number" [term]="filter.value"></ngb-highlight></td>
           <!-- <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td> -->
           <td>
               <ngb-highlight [result]="subject.term" [term]="filter.value"></ngb-highlight>

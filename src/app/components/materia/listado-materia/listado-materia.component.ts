@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'src/app/data/model/subject';
 import { DatabaseService } from 'src/app/data/services/database.service';
@@ -10,7 +10,7 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 })
 export class ListadoMateriaComponent implements OnInit {
 
-  subjects:Subject[];
+  @Input()subjects:Subject[];
   @Output() materiaElegida: EventEmitter<Subject> = new EventEmitter<Subject>();
   filter = new FormControl('');
   constructor(private dbSvc:DatabaseService) { 
