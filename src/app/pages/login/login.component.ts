@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   currentUser;
   toastShow: boolean;
   toastClasses: string;
+  comment: string;
   constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router) {
     this.currentUser = authSvc.user;
    }
@@ -30,16 +31,21 @@ export class LoginComponent implements OnInit {
 
   
   getUserLogin(user:User){
-    this.toastClasses = "bg-success text-light"
-    this.toastCallBack();
+    this.toastClasses = "bg-success text-light";
+    this.comment = 'Login confirmed';
     this.authSvc.signIn(user).then(()=>{
+    this.toastCallBack();
       let idCurrentUser = this.authSvc.user.uid;
       this.dbSvc.GetOne('Users',idCurrentUser).then((data)=>{
         this.currentUser= data;
         this.authSvc.user=data;
+        console.log(this.authSvc.user);
         this.router.navigate(['/home']);
-      });
-
-    });
+      })
+    }).catch((e)=>{
+      this.comment = e.message;
+      this.toastClasses = "bg-danger text-light";
+      this.toastCallBack();
+  });
   }
 }

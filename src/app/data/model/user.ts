@@ -3,5 +3,7 @@ export interface User {
     email:string,
     password:string,
     type:string,
-    isActive:boolean
+    isActive:boolean,
+    subjects?:string[],
+    nota?:number,
 }

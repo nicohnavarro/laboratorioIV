@@ -10,6 +10,7 @@ export class ToastComponent implements OnInit {
 
   @Input() show:boolean;
   @Input() classes:string;
+  @Input() contenido:string;
   constructor(private config:NgbToastConfig) {
     config.delay = 4000;
     config.autohide = true;

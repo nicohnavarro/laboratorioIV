@@ -17,6 +17,8 @@
     <button type="button" ngbAutofocus class="btn btn-danger" (click)="concluirInscripcion()">Ok</button>
   </div>
   </ng-template>
+  <app-toast [show]=toastShow [classes]="toastClasses" [contenido]="comment"></app-toast>
 
 
 <app-listado-materia (materiaElegida)="tomaMateria($event,content)" [subjects]=listaMaterias></app-listado-materia>
+

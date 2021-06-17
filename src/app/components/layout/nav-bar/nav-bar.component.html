@@ -26,6 +26,9 @@
         <li class="nav-item" *ngIf="user && user.type == 'Admin'">
           <a class="nav-link"  routerLink="/home/listSubjects"  routerLinkActive="active">List Subjects</a>
         </li>
+        <li class="nav-item" *ngIf="user && user.type == 'Professor'">
+          <a class="nav-link"  routerLink="/home/listSubjects"  routerLinkActive="active">List Subjects</a>
+        </li>
         <li class="nav-item" *ngIf="user && user.type == 'Admin'">
           <a class="nav-link"  routerLink="/home/listUsers"  routerLinkActive="active">List Users</a>
         </li>
@@ -47,7 +50,7 @@
           <a class="nav-link" routerLink="/profile" routerLinkActive="active">{{user.email}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/register" routerLinkActive="active" style="color: white;">{{user.type}}</a>
+          <a class="nav-link"  routerLink="/login" routerLinkActive="active" style="color: white;">{{user.type}}</a>
         </li>
       </ul>
     </div>

@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
 
   toastShow: boolean;
   toastClasses: string;
+  comment: string;
   currentUser;
   constructor(private authSvc: AuthService, private dbSvc: DatabaseService) {
     this.toastShow = false;
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
   async getUserRegister(user: User) {
     let cred = await this.authSvc.signUp(user).catch((err) => {
       this.toastClasses = "bg-danger text-light"
+      this.comment = 'Error' + err.message;
       this.toastCallBack();
     });
     if (cred) {
@@ -55,6 +57,7 @@ export class RegisterComponent implements OnInit {
     }
 
     this.toastClasses = "bg-success text-light"
+    this.comment = 'Account created'
     this.toastCallBack();
 
 

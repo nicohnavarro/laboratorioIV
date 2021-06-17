@@ -12,6 +12,7 @@ export class AddAdminComponent implements OnInit {
 
   toastShow: boolean;
   toastClasses: string;
+  comment: string;
   currentUser;
   constructor(private authSvc: AuthService, private dbSvc: DatabaseService) {
     this.toastShow = false;
@@ -30,6 +31,7 @@ export class AddAdminComponent implements OnInit {
   async getUserRegister(user: User) {
     let cred = await this.authSvc.signUp(user).catch((err) => {
       this.toastClasses = "bg-warning text-light"
+      this.comment = "Eror "+ err.message
       this.toastCallBack();
     });
     if (cred) {
@@ -40,6 +42,7 @@ export class AddAdminComponent implements OnInit {
     }
 
     this.toastClasses = "bg-success text-light"
+    this.comment = "Admin added"
     this.toastCallBack();
 
 

@@ -19,6 +19,7 @@ const routes: Routes = [
   {path:'',component:LoginComponent, data:{animation: 'home'}},
   {path:'login',component:LoginComponent, data:{animation: 'login'}},
   {path:'home',component:HomeComponent,data:{animation: 'home'},children:[
+    {path:'',component:ListadoMateriaComponent},
     {path:'listSubjects',component:ListadoMateriaComponent, canActivate:[AdminGuard]},
     {path:'addAdmin',component:AddAdminComponent, canActivate:[AdminGuard]},
     {path:'listUsers',component:ListadoUsuarioComponent, canActivate:[AdminGuard]},

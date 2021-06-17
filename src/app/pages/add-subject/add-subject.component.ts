@@ -15,6 +15,7 @@ export class AddSubjectComponent implements OnInit {
   currentUser;
   toastShow: boolean;
   toastClasses: string;
+  comment: string;
   constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router) {
     this.currentUser = authSvc.user;
    }
@@ -33,6 +34,7 @@ export class AddSubjectComponent implements OnInit {
     console.log(subject);
     this.dbSvc.CreateOne(subject,'Subjects').then(()=>{
       this.toastClasses = "bg-success text-light"
+      this.comment = "Se agrego con exito";
       this.toastCallBack();
     });
   }

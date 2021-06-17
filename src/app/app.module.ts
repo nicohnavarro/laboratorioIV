@@ -32,6 +32,7 @@ import { AgregarMateriaComponent } from './components/alumno/agregar-materia/agr
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { MySubjectsComponent } from './components/alumno/my-subjects/my-subjects.component';
 import { CantidadAlumnosDirective } from './directives/cantidad-alumnos.directive';
+import { NotaPipe } from './pipes/nota.pipe';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CantidadAlumnosDirective } from './directives/cantidad-alumnos.directiv
     AgregarMateriaComponent,
     AddAdminComponent,
     MySubjectsComponent,
-    CantidadAlumnosDirective
+    CantidadAlumnosDirective,
+    NotaPipe
   ],
   imports: [
     BrowserModule,

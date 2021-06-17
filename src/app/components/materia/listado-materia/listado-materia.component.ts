@@ -9,7 +9,7 @@ import { DatabaseService } from 'src/app/data/services/database.service';
   styleUrls: ['./listado-materia.component.css']
 })
 export class ListadoMateriaComponent implements OnInit {
-
+  alumnos:any[]=[];
   @Input()subjects:Subject[];
   @Output() materiaElegida: EventEmitter<Subject> = new EventEmitter<Subject>();
   filter = new FormControl('');
@@ -21,9 +21,25 @@ export class ListadoMateriaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  materiaselec;
   seleccionoMateria(subject:Subject){
     this.materiaElegida.emit(subject);
+this.materiaselec = subject;
+    this.alumnos = subject.students;
+  }
+
+  evaluado:boolean=false;
+  alunmnoEval;
+  ponerNota(alumno){
+    this.alunmnoEval = alumno;
+    this.evaluado = true;
+  }
+nota=1
+  addNota(){
+    console.log(this.nota);
+    this.alunmnoEval.nota = this.nota;
+    this.evaluado = false;
+
   }
 
 }
