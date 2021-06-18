@@ -42,16 +42,16 @@
         </tr>
         </tbody>
       </table>
+      <app-toast [show]=toastShow [classes]="toastClasses" [contenido]="comment"></app-toast>
 
-
-      <div class="alumnos" *ngIf="alumnos.length > 0">
-        <div class="alumno" *ngFor="let alumno of alumnos">
-          <div class="nombre" (click)="ponerNota(alumno)">{{alumno.email}}</div>
-        </div>
+    </div>
+    <div class="alumnos" *ngIf="alumnos.length > 0">
+      <div class="alumno" *ngFor="let alumno of alumnos">
+        <div class="nombre" (click)="ponerNota(alumno)">{{alumno.email}}</div>
       </div>
+    </div>
 
-      <div class="nota" *ngIf="evaluado" >
-        <input type="number" name="notaAlumno" [(ngModel)]='nota' id="" min="1" max="10">
-        <button (click)="addNota()" >Agregarnota</button>
-      </div>
-</div>
+    <div class="nota" *ngIf="evaluado" >
+      <input type="number" name="notaAlumno" [(ngModel)]='nota' id="" min="1" max="10">
+      <button (click)="addNota()" >Agregarnota</button>
+    </div>

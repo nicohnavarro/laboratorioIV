@@ -7,7 +7,7 @@ import { ToastComponent } from '../shared/toast/toast.component';
 @Component({
   selector: 'app-form-usuario',
   templateUrl: './form-usuario.component.html',
-  styleUrls: ['./form-usuario.component.css']
+  styleUrls: ['./form-usuario.component.css'],
 })
 export class FormUsuarioComponent implements OnInit {
   @Input() isLogin: boolean;
@@ -20,23 +20,36 @@ export class FormUsuarioComponent implements OnInit {
   customErrorMessages: ErrorMessage[] = [
     {
       error: 'required',
-      format: (label, error) => `${label.toUpperCase()} IS DEFINITELY REQUIRED!`
-    }, {
+      format: (label, error) =>
+        `${label.toUpperCase()} IS DEFINITELY REQUIRED!`,
+    },
+    {
       error: 'pattern',
-      format: (label, error) => `${label.toUpperCase()} DOESN'T LOOK RIGHT...`
-    }, {
+      format: (label, error) => `${label.toUpperCase()} DOESN'T LOOK RIGHT...`,
+    },
+    {
       error: 'maxLength',
-      format: (label, error) => `${label.toUpperCase()} MAX LENGTH 20...`
-    }, {
+      format: (label, error) => `${label.toUpperCase()} MAX LENGTH 20...`,
+    },
+    {
       error: 'minLength',
-      format: (label, error) => `${label.toUpperCase()} MIN LENGTH 6...`
-    }
-
+      format: (label, error) => `${label.toUpperCase()} MIN LENGTH 6...`,
+    },
   ];
 
   constructor() {
-    this.email = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]);
-    this.password = new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]);
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      ),
+    ]);
+    //this.email = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [
+      Validators.required,
+      Validators.maxLength(20),
+      Validators.minLength(6),
+    ]);
     this.type = new FormControl('', [Validators.required]);
     this.formRegister = new FormGroup({});
     this.formRegister.addControl('Email', this.email);
@@ -45,48 +58,48 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.isAdmin){
+    if (this.isAdmin) {
       this.type.setValue('Admin');
     }
   }
 
   onSubmit() {
-    if(this.isAdmin){
+    if (this.isAdmin) {
       this.type.setValue('Admin');
     }
     let user: User = {
       email: this.formRegister.value.Email,
       password: this.formRegister.value.Password,
       type: this.formRegister.value.Type,
-      isActive: true
-    }
+      isActive: true,
+    };
     this.userRegister.emit(user);
   }
 
   onChange(option) {
     switch (option) {
       case 'Admin1':
-        this.email.setValue("admin@admin.com");
+        this.email.setValue('admin@admin.com');
         this.password.setValue('123123');
         break;
       case 'Admin2':
-        this.email.setValue("admin2@admin.com");
+        this.email.setValue('admin2@admin.com');
         this.password.setValue('123123');
         break;
       case 'Student1':
-        this.email.setValue("student@student.com");
+        this.email.setValue('student@student.com');
         this.password.setValue('123123');
         break;
       case 'Student2':
-        this.email.setValue("student2@student.com");
+        this.email.setValue('student2@student.com');
         this.password.setValue('123123');
         break;
       case 'Professor1':
-        this.email.setValue("professor@professor.com");
+        this.email.setValue('professor@professor.com');
         this.password.setValue('123123');
         break;
       case 'Profesor2':
-        this.email.setValue("professor2@professor.com");
+        this.email.setValue('professor2@professor.com');
         this.password.setValue('123123');
         break;
 
@@ -100,13 +113,12 @@ export class FormUsuarioComponent implements OnInit {
       email: this.formRegister.value.Email,
       password: this.formRegister.value.Password,
       type: this.formRegister.value.Type,
-      isActive: true
-    }
+      isActive: true,
+    };
     this.userRegister.emit(user);
   }
 
   onReset() {
     this.formRegister.reset();
   }
-
 }

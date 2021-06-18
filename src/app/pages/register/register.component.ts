@@ -6,10 +6,9 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   toastShow: boolean;
   toastClasses: string;
   comment: string;
@@ -18,8 +17,7 @@ export class RegisterComponent implements OnInit {
     this.toastShow = false;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toastCallBack() {
     this.toastShow = true;
@@ -30,14 +28,14 @@ export class RegisterComponent implements OnInit {
 
   async getUserRegister(user: User) {
     let cred = await this.authSvc.signUp(user).catch((err) => {
-      this.toastClasses = "bg-danger text-light"
+      this.toastClasses = 'bg-danger text-light';
       this.comment = 'Error' + err.message;
       this.toastCallBack();
     });
     if (cred) {
       user.id = cred.user.uid;
       await this.dbSvc.CreateOne(user, 'Users');
-      switch (user.type) {
+      /*switch (user.type) {
         case 'Admin':
           let user_ok = await this.dbSvc.CreateOne(user, 'Admins');
           console.log(user_ok);
@@ -53,13 +51,11 @@ export class RegisterComponent implements OnInit {
 
         default:
           break;
-      }
+      }*/
     }
 
-    this.toastClasses = "bg-success text-light"
-    this.comment = 'Account created'
+    this.toastClasses = 'bg-success text-light';
+    this.comment = 'Account created';
     this.toastCallBack();
-
-
   }
 }

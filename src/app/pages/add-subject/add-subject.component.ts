@@ -32,11 +32,17 @@ export class AddSubjectComponent implements OnInit {
 
   getSubject(subject:Subject){
     console.log(subject);
+    subject.profesor.subjects.push(subject.name);
     this.dbSvc.CreateOne(subject,'Subjects').then(()=>{
       this.toastClasses = "bg-success text-light"
       this.comment = "Se agrego con exito";
       this.toastCallBack();
     });
+    this.dbSvc.UpdateOne(subject.profesor,'Users').then(()=>{
+      this.toastClasses = "bg-success text-light"
+      this.comment = "Se agrego Profe con exito";
+      this.toastCallBack();
+    })
   }
 
 }

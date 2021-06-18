@@ -1,3 +1,5 @@
+import { ProfeGuard } from './guards/profe.guard';
+import { ExamenComponent } from './components/examen/examen.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
@@ -25,6 +27,7 @@ const routes: Routes = [
     {path:'listUsers',component:ListadoUsuarioComponent, canActivate:[AdminGuard]},
     {path:'inscription',component:AgregarMateriaComponent, canActivate:[AlumnoGuard]},
     {path:'mySubjects',component:MySubjectsComponent, canActivate:[AlumnoGuard]},
+    {path:'exam',component:ExamenComponent, canActivate:[ProfeGuard]},
   ]},
   {path:'register',component:RegisterComponent,data:{animation: 'registro'}},
   {path:'addSubject',component:AddSubjectComponent, canActivate:[AdminGuard]},

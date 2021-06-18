@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "laboratorioIV"
+  "defaultProject": "laboratorioIV",
+  "cli": {
+    "analytics": false
+  }
 }

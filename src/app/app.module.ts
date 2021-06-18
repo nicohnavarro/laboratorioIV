@@ -33,6 +33,10 @@ import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { MySubjectsComponent } from './components/alumno/my-subjects/my-subjects.component';
 import { CantidadAlumnosDirective } from './directives/cantidad-alumnos.directive';
 import { NotaPipe } from './pipes/nota.pipe';
+import { ListadoDeAsignaturasComponent } from './components/listado-de-asignaturas/listado-de-asignaturas.component';
+import { ListadoAprobacionDirectaComponent } from './components/listado-aprobacion-directa/listado-aprobacion-directa.component';
+import { ListadoAprobacionNoDirectaComponent } from './components/listado-aprobacion-no-directa/listado-aprobacion-no-directa.component';
+import { ExamenComponent } from './components/examen/examen.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { NotaPipe } from './pipes/nota.pipe';
     AddAdminComponent,
     MySubjectsComponent,
     CantidadAlumnosDirective,
-    NotaPipe
+    NotaPipe,
+    ListadoDeAsignaturasComponent,
+    ListadoAprobacionDirectaComponent,
+    ListadoAprobacionNoDirectaComponent,
+    ExamenComponent
   ],
   imports: [
     BrowserModule,

@@ -12,15 +12,15 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 export class LoginComponent implements OnInit {
 
   currentUser;
+  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router) {
+    this.currentUser = authSvc.user;
+  }
+  
+  ngOnInit(): void {
+  }
   toastShow: boolean;
   toastClasses: string;
   comment: string;
-  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router) {
-    this.currentUser = authSvc.user;
-   }
-
-  ngOnInit(): void {
-  }
 
   toastCallBack() {
     this.toastShow = true;

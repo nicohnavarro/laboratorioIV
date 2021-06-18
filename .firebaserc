@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "pps-nicohnavarro": {
-      "hosting": {
-        "laboratorioIV": [
-          "pps-nicohnavarro"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "pps-nicohnavarro"
+    "default": "nicohnavarro-clones"
   }
 }

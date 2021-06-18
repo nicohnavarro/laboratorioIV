@@ -1,42 +1,63 @@
-<div class="card" style="margin: 1rem; padding: 1rem;">
-    <form>
-        <div class="form-group form-inline">
-            Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Type of User</label>
-            <select  class="form-control" (change)="onChange($event.target.value)">
-              <option>All</option>
-              <option>Admin</option>
-              <option>Student</option>
-              <option>Professor</option>
-            </select>
-          </div>
-      </form>
-      
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Email</th>
-          <th scope="col">Password</th>
-          <th scope="col">Type</th>
-          <!-- <th scope="col">Population</th> -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let usuario of usuarios; index as i">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
-            <ngb-highlight [result]="usuario.email" [term]="filter.value"></ngb-highlight>
-          </td>
-          <td><ngb-highlight [result]="usuario.password | number" [term]="filter.value"></ngb-highlight></td>
-          <!-- <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td> -->
-          <td>
-              <ngb-highlight [result]="usuario.type" [term]="filter.value"></ngb-highlight>
-            </td>
-        </tr>
-        </tbody>
-      </table>
+<div class="card" style="margin: 1rem; padding: 1rem">
+  <form>
+    <div class="form-group form-inline">
+      Full text search:
+      <input class="form-control ml-2" type="text" [formControl]="filter" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Type of User</label>
+      <select class="form-control" (change)="onChange($event.target.value)">
+        <option>All</option>
+        <option>Admin</option>
+        <option>Student</option>
+        <option>Professor</option>
+      </select>
+    </div>
+  </form>
+  <app-toast
+    [show]="toastShow"
+    [classes]="toastClasses"
+    [contenido]="comment"
+  ></app-toast>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Type</th>
+        <th scope="col">Delete</th>
+        <!-- <th scope="col">Population</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+          <ngb-highlight
+            [result]="usuario.email"
+            [term]="filter.value"
+          ></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight
+            [result]="usuario.password | number"
+            [term]="filter.value"
+          ></ngb-highlight>
+        </td>
+        <!-- <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td> -->
+        <td>
+          <ngb-highlight
+            [result]="usuario.type"
+            [term]="filter.value"
+          ></ngb-highlight>
+        </td>
+        <td>
+          <button (click)="deleteUser(usuario)">DEL</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+

@@ -9,7 +9,7 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 @Component({
   selector: 'app-alta-materia',
   templateUrl: './alta-materia.component.html',
-  styleUrls: ['./alta-materia.component.css']
+  styleUrls: ['./alta-materia.component.css'],
 })
 export class AltaMateriaComponent implements OnInit {
   formRegister: FormGroup;
@@ -18,14 +18,16 @@ export class AltaMateriaComponent implements OnInit {
   quotas: FormControl;
   term: FormControl;
   professor: Professor;
-  @Output() subjectRegister: EventEmitter<Subject> = new EventEmitter<Subject>();
+  @Output() subjectRegister: EventEmitter<Subject> =
+    new EventEmitter<Subject>();
   customErrorMessages: ErrorMessage[] = [
     {
       error: 'required',
-      format: (label, error) => `${label.toUpperCase()} IS DEFINITELY REQUIRED!`
-    }
+      format: (label, error) =>
+        `${label.toUpperCase()} IS DEFINITELY REQUIRED!`,
+    },
   ];
-  constructor(private dbSvc:DatabaseService) {
+  constructor(private dbSvc: DatabaseService) {
     this.name = new FormControl('', [Validators.required]);
     this.quotas = new FormControl('', [Validators.required]);
     this.term = new FormControl('', [Validators.required]);
@@ -33,13 +35,12 @@ export class AltaMateriaComponent implements OnInit {
     this.formRegister.addControl('Name', this.name);
     this.formRegister.addControl('Quotas', this.quotas);
     this.formRegister.addControl('Term', this.term);
-    this.dbSvc.GetAll('Professors').subscribe(data=>{
-      this.listaProfes=data;
-    })
+    this.dbSvc.GetAll('Users').subscribe((data) => {
+      this.listaProfes = data.filter((profe) => profe.type == 'Professor');
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     let subject: Subject = {
@@ -47,8 +48,8 @@ export class AltaMateriaComponent implements OnInit {
       term: this.formRegister.value.Term,
       quotas: this.formRegister.value.Quotas,
       profesor: this.professor,
-      students:[],
-    }
+      students: [],
+    };
     this.subjectRegister.emit(subject);
   }
 
@@ -59,5 +60,4 @@ export class AltaMateriaComponent implements OnInit {
     this.professor = profe;
     console.log(profe);
   }
-
 }
