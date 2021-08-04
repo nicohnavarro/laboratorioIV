@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorMessage } from 'ng-bootstrap-form-validation';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/data/model/user';
-import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
   selector: 'app-form-usuario',
@@ -16,6 +16,11 @@ export class FormUsuarioComponent implements OnInit {
   email: FormControl;
   password: FormControl;
   type: FormControl;
+  imagen_uno: string = '/assets/images/user.png';
+  subirImagen_uno;
+
+  @Output() user_img_1: EventEmitter<File> = new EventEmitter<File>();
+
   @Output() userRegister: EventEmitter<User> = new EventEmitter<User>();
   customErrorMessages: ErrorMessage[] = [
     {
@@ -61,6 +66,13 @@ export class FormUsuarioComponent implements OnInit {
     if (this.isAdmin) {
       this.type.setValue('Admin');
     }
+  }
+
+  obtieneImagen_uno(e) {
+    this.imagen_uno = e.result;
+  }
+  archivoSubir_uno(e) {
+    this.subirImagen_uno = e;
   }
 
   onSubmit() {

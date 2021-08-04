@@ -1,6 +1,7 @@
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule,NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,8 +20,6 @@ import { FormUsuarioComponent } from './components/form-usuario/form-usuario.com
 import { NgBootstrapFormValidationModule,CUSTOM_ERROR_MESSAGES } from 'ng-bootstrap-form-validation';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ERRORS } from './utils/custom-errors';
-import { AlertComponent } from './components/shared/alert/alert.component';
-import { ToastComponent } from './components/shared/toast/toast.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -37,6 +36,7 @@ import { ListadoDeAsignaturasComponent } from './components/listado-de-asignatur
 import { ListadoAprobacionDirectaComponent } from './components/listado-aprobacion-directa/listado-aprobacion-directa.component';
 import { ListadoAprobacionNoDirectaComponent } from './components/listado-aprobacion-no-directa/listado-aprobacion-no-directa.component';
 import { ExamenComponent } from './components/examen/examen.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -53,8 +53,6 @@ import { ExamenComponent } from './components/examen/examen.component';
     HomeComponent,
     ErrorComponent,
     FormUsuarioComponent,
-    AlertComponent,
-    ToastComponent,
     RegisterComponent,
     AltaMateriaComponent,
     AddSubjectComponent,
@@ -68,7 +66,8 @@ import { ExamenComponent } from './components/examen/examen.component';
     ListadoDeAsignaturasComponent,
     ListadoAprobacionDirectaComponent,
     ListadoAprobacionNoDirectaComponent,
-    ExamenComponent
+    ExamenComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +78,8 @@ import { ExamenComponent } from './components/examen/examen.component';
     ReactiveFormsModule,
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    ToastrModule.forRoot(),
   ],
   providers: [{
     provide: CUSTOM_ERROR_MESSAGES,

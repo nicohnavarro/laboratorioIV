@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/data/model/user';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { DatabaseService } from 'src/app/data/services/database.service';
@@ -12,29 +13,20 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 export class LoginComponent implements OnInit {
 
   currentUser;
-  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router) {
+  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router,private toastr:ToastrService) {
     this.currentUser = authSvc.user;
   }
   
   ngOnInit(): void {
   }
-  toastShow: boolean;
-  toastClasses: string;
-  comment: string;
 
-  toastCallBack() {
-    this.toastShow = true;
-    setTimeout(() => {
-      this.toastShow = false;
-    }, 3000);
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!',{positionClass:'toast-bottom-right'}); 
   }
-
   
   getUserLogin(user:User){
-    this.toastClasses = "bg-success text-light";
-    this.comment = 'Login confirmed';
     this.authSvc.signIn(user).then(()=>{
-    this.toastCallBack();
+      this.showSuccess();
       let idCurrentUser = this.authSvc.user.uid;
       this.dbSvc.GetOne('Users',idCurrentUser).then((data)=>{
         this.currentUser= data;
@@ -43,9 +35,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       })
     }).catch((e)=>{
-      this.comment = e.message;
-      this.toastClasses = "bg-danger text-light";
-      this.toastCallBack();
+      this.toastr.error("Something goes wrong",e.message,{positionClass:'toast-bottom-right'});
   });
   }
 }

@@ -1,0 +1,10 @@
+<div class="datos-files">
+    <div class="cont-img">
+        <img [src]="source" alt="">
+    </div>
+    <div class="form-group">
+        <label mat-button [for]="source" *ngIf="source === '/assets/images/user.png'">Load image</label>
+        <label mat-button [for]="source" *ngIf="source !== '/assets/images/user.png'">Change image</label>
+        <input type="file" [id]="source" (change)="onSelectFile($event,source)">
+    </div>
+</div>

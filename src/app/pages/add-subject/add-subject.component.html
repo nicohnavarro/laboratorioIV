@@ -1,7 +1,6 @@
 <app-nav-bar [user]="currentUser"></app-nav-bar>
 
 <div class="container">
-    <app-toast [show]=toastShow [classes]="toastClasses" [contenido]="comment"></app-toast>
     <div class="card">
         <app-alta-materia (subjectRegister)="getSubject($event)"></app-alta-materia>
     </div>

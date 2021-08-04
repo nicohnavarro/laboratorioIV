@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'src/app/data/model/subject';
 
 import { AuthService } from 'src/app/data/services/auth.service';
@@ -16,20 +17,16 @@ export class AddSubjectComponent implements OnInit {
   toastShow: boolean;
   toastClasses: string;
   comment: string;
-  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router) {
+  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router,private toastr: ToastrService) {
     this.currentUser = authSvc.user;
+   }
+  
+   showSuccess() {
+     this.toastr.success('Hello world!', 'Toastr fun!');
    }
 
   ngOnInit(): void {
   }
-
-  toastCallBack() {
-    this.toastShow = true;
-    setTimeout(() => {
-      this.toastShow = false;
-    }, 3000);
-  }
-
   getSubject(subject:Subject){
     console.log(subject);
     subject.profesor.subjects ?
@@ -39,12 +36,12 @@ export class AddSubjectComponent implements OnInit {
     this.dbSvc.CreateOne(subject,'Subjects').then(()=>{
       this.toastClasses = "bg-success text-light"
       this.comment = "Se agrego con exito";
-      this.toastCallBack();
+      this.showSuccess();
     });
     this.dbSvc.UpdateOne(subject.profesor,'Users').then(()=>{
       this.toastClasses = "bg-success text-light"
       this.comment = "Se agrego Profe con exito";
-      this.toastCallBack();
+      this.showSuccess();
     })
   }
 

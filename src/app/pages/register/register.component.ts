@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/data/model/user';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { DatabaseService } from 'src/app/data/services/database.service';
@@ -9,28 +10,22 @@ import { DatabaseService } from 'src/app/data/services/database.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  toastShow: boolean;
-  toastClasses: string;
   comment: string;
   currentUser;
-  constructor(private authSvc: AuthService, private dbSvc: DatabaseService) {
-    this.toastShow = false;
+  constructor(private authSvc: AuthService, private dbSvc: DatabaseService,private toastr:ToastrService) {
   }
 
   ngOnInit(): void {}
 
-  toastCallBack() {
-    this.toastShow = true;
-    setTimeout(() => {
-      this.toastShow = false;
-    }, 3000);
+  
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
   async getUserRegister(user: User) {
     let cred = await this.authSvc.signUp(user).catch((err) => {
-      this.toastClasses = 'bg-danger text-light';
       this.comment = 'Error' + err.message;
-      this.toastCallBack();
+      this.showSuccess();
     });
     if (cred) {
       user.id = cred.user.uid;
@@ -54,8 +49,7 @@ export class RegisterComponent implements OnInit {
       }*/
     }
 
-    this.toastClasses = 'bg-success text-light';
     this.comment = 'Account created';
-    this.toastCallBack();
+    this.showSuccess();
   }
 }
