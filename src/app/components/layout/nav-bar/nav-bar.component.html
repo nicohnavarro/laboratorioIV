@@ -50,7 +50,10 @@
           <a class="nav-link" routerLink="/profile" routerLinkActive="active">{{user.email}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/login" routerLinkActive="active" style="color: white;">{{user.type}}</a>
+          <a class="nav-link" style="color: white;">{{user.type}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white;"(click)="logout()" >Logout</a>
         </li>
       </ul>
     </div>

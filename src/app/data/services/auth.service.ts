@@ -32,4 +32,8 @@ public user;
   signUp(user:User){
       return this.afAuth.createUserWithEmailAndPassword(user.email,user.password);
   }
+
+  logout(){
+    return this.afAuth.signOut();
+  }
 }
