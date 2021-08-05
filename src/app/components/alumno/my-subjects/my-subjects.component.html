@@ -1,1 +1,10 @@
-<app-listado-materia  [subjects]=listaMaterias></app-listado-materia>
+<div class="row">
+  <div class="col-md-8">
+    <app-listado-materia  [subjects]=listaMaterias (materiaElegida)="getSubject($event)"></app-listado-materia>
+  </div>
+  <div class="col-md-4">
+    <app-detalle-materia [subject]=subjectselect></app-detalle-materia>
+  </div>
+
+</div>
+

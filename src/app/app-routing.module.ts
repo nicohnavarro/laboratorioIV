@@ -1,3 +1,4 @@
+import { ListadoAlumnoComponent } from './components/alumno/listado-alumno/listado-alumno.component';
 import { ProfeGuard } from './guards/profe.guard';
 import { ExamenComponent } from './components/examen/examen.component';
 import { NgModule } from '@angular/core';
@@ -15,19 +16,23 @@ import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ActasExamenComponent } from './pages/actas-examen/actas-examen.component';
 
 
 const routes: Routes = [
   {path:'',component:LoginComponent, data:{animation: 'home'}},
   {path:'login',component:LoginComponent, data:{animation: 'login'}},
   {path:'home',component:HomeComponent,data:{animation: 'home'},children:[
-    {path:'',component:ListadoMateriaComponent},
-    {path:'listSubjects',component:ListadoMateriaComponent, canActivate:[AdminGuard]},
+    {path:'',component:MySubjectsComponent},
+    {path:'listSubjects',component:MySubjectsComponent, canActivate:[AdminGuard]},
+    {path:'listDeletes',component:ListadoAlumnoComponent, canActivate:[AdminGuard]},
     {path:'addAdmin',component:AddAdminComponent, canActivate:[AdminGuard]},
     {path:'listUsers',component:ListadoUsuarioComponent, canActivate:[AdminGuard]},
     {path:'inscription',component:AgregarMateriaComponent, canActivate:[AlumnoGuard]},
     {path:'mySubjects',component:MySubjectsComponent, canActivate:[AlumnoGuard]},
+    {path:'subjects',component:MySubjectsComponent, canActivate:[ProfeGuard]},
     {path:'exam',component:ExamenComponent, canActivate:[ProfeGuard]},
+    {path:'listExams',component:ActasExamenComponent, canActivate:[ProfeGuard]},
   ]},
   {path:'register',component:RegisterComponent,data:{animation: 'registro'}},
   {path:'addSubject',component:AddSubjectComponent, canActivate:[AdminGuard]},

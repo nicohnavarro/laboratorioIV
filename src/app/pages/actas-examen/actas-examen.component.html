@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12 col-md-offset-3">
+    <app-listado-de-asignaturas
+      [professorselected]="profe"
+      (materiaSelecionada)="getMateria($event)"
+    ></app-listado-de-asignaturas>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <app-listado-aprobacion-no-directa
+      [materia]="materiaSelected"
+    ></app-listado-aprobacion-no-directa>
+  </div>
+  <div class="col-md-6">
+    <app-listado-aprobacion-directa
+      [materia]="materiaSelected"
+    ></app-listado-aprobacion-directa>
+  </div>
+</div>

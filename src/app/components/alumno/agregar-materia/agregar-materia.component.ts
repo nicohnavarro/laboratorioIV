@@ -21,7 +21,11 @@ export class AgregarMateriaComponent implements OnInit {
     private authSvc: AuthService,
     private db: DatabaseService,
     private modalService: NgbModal
-  ) {}
+  ) {
+    this.db.GetAll("Subjects").subscribe((data) => {
+      this.listaMaterias = data.filter((subject)=> subject.quotas > 0 ? true:false);
+    })
+  }
 
   ngOnInit(): void {}
 
@@ -30,20 +34,11 @@ export class AgregarMateriaComponent implements OnInit {
     this.openVerticallyCentered(content);
   }
 
-  toastCallBack() {
-    this.toastShow = true;
-    setTimeout(() => {
-      this.toastShow = false;
-    }, 3000);
-  }
-
   openVerticallyCentered(content) {
     if (this.subject.quotas > 0 && !this.verificarSiTieneClase()) {
       this.modalService.open(content, { centered: true });
     } else {
-      this.toastClasses = 'bg-warning text-dark';
-      this.comment = 'Ya esta registrado';
-      this.toastCallBack();
+
     }
   }
 
@@ -58,8 +53,7 @@ export class AgregarMateriaComponent implements OnInit {
   concluirInscripcion() {
     this.modalService.dismissAll();
     this.subject.students.push(this.authSvc.user);
-    console.log(this.authSvc.user?.subjects == undefined);
-    let student = this.authSvc.user;
+ let student = this.authSvc.user;
     if (student?.subjects == undefined) {
       student = { ...student, subjects: [] };
     }
@@ -71,9 +65,6 @@ export class AgregarMateriaComponent implements OnInit {
       });
     });
     this.db.UpdateOne(student, 'Users').then(() => {
-      this.toastClasses = 'bg-success text-light';
-      this.comment = 'Register confirmed';
-      this.toastCallBack();
     });
   }
 }

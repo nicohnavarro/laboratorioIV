@@ -37,6 +37,9 @@ import { ListadoAprobacionDirectaComponent } from './components/listado-aprobaci
 import { ListadoAprobacionNoDirectaComponent } from './components/listado-aprobacion-no-directa/listado-aprobacion-no-directa.component';
 import { ExamenComponent } from './components/examen/examen.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ComboAlumnoComponent } from './components/alumno/combo-alumno/combo-alumno.component';
+import { ActasExamenComponent } from './pages/actas-examen/actas-examen.component';
+import { AprobadoPipe } from './pipes/aprobado.pipe';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,10 @@ import { ToastrModule } from 'ngx-toastr';
     ListadoAprobacionDirectaComponent,
     ListadoAprobacionNoDirectaComponent,
     ExamenComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ComboAlumnoComponent,
+    ActasExamenComponent,
+    AprobadoPipe
   ],
   imports: [
     BrowserModule,

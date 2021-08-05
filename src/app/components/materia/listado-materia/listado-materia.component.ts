@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Exam } from './../../../data/model/exam';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -11,23 +12,13 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 })
 export class ListadoMateriaComponent implements OnInit {
   alumnos: any[] = [];
+  alumno:any;
+  puedeCargarNota:boolean = false;
   @Input() subjects: Subject[];
   @Output() materiaElegida: EventEmitter<Subject> = new EventEmitter<Subject>();
   filter = new FormControl('');
-  constructor(private dbSvc: DatabaseService) {
-    this.dbSvc.GetAll('Subjects').subscribe((data) => {
-      this.subjects = data;
-    });
-  }
-  toastShow: boolean;
-  toastClasses: string;
-  comment: string;
-
-  toastCallBack() {
-    this.toastShow = true;
-    setTimeout(() => {
-      this.toastShow = false;
-    }, 3000);
+  constructor(private dbSvc: DatabaseService,private toastr:ToastrService) {
+    
   }
 
   ngOnInit(): void {}
@@ -50,24 +41,28 @@ export class ListadoMateriaComponent implements OnInit {
     console.log(this.nota);
     if(this.nota <1 || this.nota >10 )
     {
-      this.comment = 'nota normal !';
-      this.toastClasses = "bg-danger text-light";
-      this.toastCallBack();
-      return
+      this.toastr.error('La nota debe ser entre 0 y 10')
     }
-    this.alunmnoEval.nota = this.nota;
+    this.alumno.nota = this.nota;
     this.evaluado = false;
     let examen = {
       'subject':this.materiaselec,
-      'student':this.alunmnoEval,
+      'student':this.alumno,
       'nota':this.nota,
       'date':new Date(),
     } 
-
+    this.puedeCargarNota = false;
     this.dbSvc.CreateOne(examen as Exam,'Exams').then(()=>{
-      this.comment = 'Nota cargada !';
-      this.toastClasses = "bg-success text-light";
-      this.toastCallBack();
+      this.toastr.success('Nota cargada')
     })
+  }
+
+  getExam(student){
+    this.alumno = student;
+    this.puedeCargarNota = true;
+  }
+
+  getAlumno(alumno) {
+    this.alumno = alumno;
   }
 }

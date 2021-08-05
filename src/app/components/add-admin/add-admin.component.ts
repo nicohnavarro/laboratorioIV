@@ -1,3 +1,4 @@
+import { FileService } from './../../data/services/file.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/data/model/user';
 import { AuthService } from 'src/app/data/services/auth.service';
@@ -9,41 +10,31 @@ import { DatabaseService } from 'src/app/data/services/database.service';
   styleUrls: ['./add-admin.component.css']
 })
 export class AddAdminComponent implements OnInit {
-
-  toastShow: boolean;
-  toastClasses: string;
-  comment: string;
   currentUser;
-  constructor(private authSvc: AuthService, private dbSvc: DatabaseService) {
-    this.toastShow = false;
+  file_uno: File;
+
+  constructor(private authSvc: AuthService, private dbSvc: DatabaseService,private fileSvc:FileService) {
   }
 
   ngOnInit(): void {
   }
 
-  toastCallBack() {
-    this.toastShow = true;
-    setTimeout(() => {
-      this.toastShow = false;
-    }, 3000);
+  GetImgUno(img: File) {
+    this.file_uno = img
+    console.log(img);
   }
 
   async getUserRegister(user: User) {
     let cred = await this.authSvc.signUp(user).catch((err) => {
-      this.toastClasses = "bg-warning text-light"
-      this.comment = "Eror "+ err.message
-      this.toastCallBack();
+
     });
     if (cred) {
       user.id = cred.user.uid;
+      let task_1 = await this.fileSvc.UploadFile(this.file_uno, user.email);
+      user.image = await task_1.ref.getDownloadURL();
       await this.dbSvc.CreateOne(user, 'Users');
           let user_ok = await this.dbSvc.CreateOne(user, 'Admins');
-          console.log(user_ok);
     }
-
-    this.toastClasses = "bg-success text-light"
-    this.comment = "Admin added"
-    this.toastCallBack();
 
 
   }

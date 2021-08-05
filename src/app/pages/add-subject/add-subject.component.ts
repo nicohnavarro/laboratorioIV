@@ -1,3 +1,4 @@
+import { FileService } from './../../data/services/file.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +18,9 @@ export class AddSubjectComponent implements OnInit {
   toastShow: boolean;
   toastClasses: string;
   comment: string;
-  constructor(private authSvc:AuthService,private dbSvc:DatabaseService, private router:Router,private toastr: ToastrService) {
+  file_uno: File;
+
+  constructor(private authSvc:AuthService,private dbSvc:DatabaseService,private fileSvc:FileService, private router:Router,private toastr: ToastrService) {
     this.currentUser = authSvc.user;
    }
   
@@ -27,20 +30,22 @@ export class AddSubjectComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getSubject(subject:Subject){
-    console.log(subject);
+
+  GetImgUno(img: File) {
+    this.file_uno = img
+  }
+
+  async getSubject(subject:Subject){
+    let task_1 = await this.fileSvc.UploadFile(this.file_uno, subject.name);
+    subject.image = await task_1.ref.getDownloadURL();
+
     subject.profesor.subjects ?
       subject.profesor.subjects.push(subject.name) :
       subject.profesor.subjects = [subject.name];
 
     this.dbSvc.CreateOne(subject,'Subjects').then(()=>{
-      this.toastClasses = "bg-success text-light"
-      this.comment = "Se agrego con exito";
-      this.showSuccess();
     });
     this.dbSvc.UpdateOne(subject.profesor,'Users').then(()=>{
-      this.toastClasses = "bg-success text-light"
-      this.comment = "Se agrego Profe con exito";
       this.showSuccess();
     })
   }

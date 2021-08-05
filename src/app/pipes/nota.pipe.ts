@@ -7,13 +7,13 @@ export class NotaPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     if(value>=1 && value <=4){
-      return 'DESAPROBADO';
+      return value+' DESAPROBADO';
     }
     if(value>4 && value <=6){
-      return 'APROBADO';
+      return value+' APROBADO';
     }
     if(value>6){
-      return 'PROMOCIONADO';
+      return value+' PROMOCIONADO';
     }
   }
 

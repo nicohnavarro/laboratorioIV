@@ -7,12 +7,10 @@ export class CantidadAlumnosDirective {
 
   constructor(el: ElementRef) {
     setTimeout(() => {
-      console.log(el);
-      console.log(el.nativeElement.innerText);
       el.nativeElement.style.padding = '0.2rem';
       el.nativeElement.style.borderRadius = '50%';
       el.nativeElement.style.margin = '1rem';
-      if(el.nativeElement.innerText >17){
+      if(el.nativeElement.innerText >20){
         el.nativeElement.style.backgroundColor = 'green';
         el.nativeElement.style.color = 'white';
       }

@@ -10,16 +10,28 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 })
 export class MySubjectsComponent implements OnInit {
 
-  listaMaterias:Subject[];
-  constructor(private atuhSvc:AuthService,private db:DatabaseService) { 
-    this.db.GetAll("Subjects").subscribe((data)=>{
-      let materias = data.map((materia:Subject)=> {
-        let alumnos = materia.students.map((alumno)=> {return alumno.email})
-        if(alumnos.includes(this.atuhSvc.user))
-          return materia;
-      })
-      this.listaMaterias= materias;
+  listaMaterias: Subject[];
+  subjectselect: Subject;
+  constructor(private authSvc: AuthService, private db: DatabaseService) {
+    this.db.GetAll("Subjects").subscribe((data) => {
+      let materias = data.filter((materia) => {
+      if (authSvc.user.type === 'Student') {
+          let include = JSON.stringify(materia.students).includes(authSvc.user.email);
+          return include ? true : false;
+        }
+        if (authSvc.user.type === 'Admin') {
+          return true;
+        }
+        else {
+          let include = materia.profesor.email === authSvc.user.email;
+          return include ? true : false;
+        }
+      });
+    this.listaMaterias = materias;
     })
+  }
+  getSubject(subject) {
+    this.subjectselect = subject;
   }
 
   ngOnInit(): void {

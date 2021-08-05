@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from './../../data/services/database.service';
+import { Exam } from './../../data/model/exam';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-listado-aprobacion-directa',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListadoAprobacionDirectaComponent implements OnInit {
 
-  constructor() { }
+  @Input() materia;
+  exams: Exam[];
+  constructor(private db:DatabaseService) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.db.GetAll('Exams').subscribe((data)=>{
+      this.exams = data.filter((exam)=> this.materia === exam.subject.name ? true: false)
+        .filter((exam)=> exam.nota >= 7 ? true:false);
+    })
   }
 
 }

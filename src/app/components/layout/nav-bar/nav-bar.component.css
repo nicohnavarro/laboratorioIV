@@ -4,3 +4,8 @@
     justify-content: end;
     margin-right: 0;
 }
+
+
+a:hover{
+    cursor: pointer;
+}

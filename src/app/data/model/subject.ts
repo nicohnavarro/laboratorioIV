@@ -8,4 +8,5 @@ export interface Subject {
     quotas:number,
     profesor:Professor,
     students:Student[],
+    image?:string,
 }

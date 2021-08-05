@@ -42,16 +42,18 @@
         </tr>
         </tbody>
       </table>
-      <app-toast [show]=toastShow [classes]="toastClasses" [contenido]="comment"></app-toast>
 
     </div>
-    <div class="alumnos" *ngIf="alumnos.length > 0">
+    <!-- <div class="alumnos" *ngIf="alumnos.length > 0">
       <div class="alumno" *ngFor="let alumno of alumnos">
         <div class="nombre" (click)="ponerNota(alumno)">{{alumno.email}}</div>
       </div>
-    </div>
+    </div> -->
+    
+        <div class="nota m-3" *ngIf="puedeCargarNota" >
+          <input type="number" name="notaAlumno" [(ngModel)]='nota' id="" min="1" max="10">
+          <button (click)="addNota()" class="btn btn-outline-dark">Agregar nota</button>
+        </div>
 
-    <div class="nota" *ngIf="evaluado" >
-      <input type="number" name="notaAlumno" [(ngModel)]='nota' id="" min="1" max="10">
-      <button (click)="addNota()" >Agregarnota</button>
-    </div>
+    <app-combo-alumno [listaAlumnos]="alumnos" (selectedAlumno)="getAlumno($event)" (exam)="getExam($event)">
+    </app-combo-alumno>

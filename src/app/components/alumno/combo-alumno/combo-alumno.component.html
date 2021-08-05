@@ -1,0 +1,7 @@
+<h4 style="background-color: orange; color: black; border-radius: 14px; padding: 0.4rem;" *ngIf="alumno">Alumno: {{alumno.email}}</h4>
+<button class="btn btn-dark" *ngIf="alumno && !alumno.nota" (click)="doExam(alumno)">Cargar Examen</button>
+
+<h4 style="background-color: red; color: black; border-radius: 14px; padding: 0.4rem;" *ngIf="listaAlumnos && listaAlumnos.length == 0">No hay alumnos</h4>
+<ul class="list-group" *ngFor="let alumno of listaAlumnos">
+    <li class="list-group-item" (click)="setAlumno(alumno)">{{alumno.email}}</li>
+</ul>

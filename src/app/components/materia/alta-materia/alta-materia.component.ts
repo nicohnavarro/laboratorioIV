@@ -18,6 +18,12 @@ export class AltaMateriaComponent implements OnInit {
   quotas: FormControl;
   term: FormControl;
   professor: Professor;
+
+  imagen_uno: string = '/assets/images/user.png';
+  subirImagen_uno;
+
+  @Output() user_img_1: EventEmitter<File> = new EventEmitter<File>();
+
   @Output() subjectRegister: EventEmitter<Subject> =
     new EventEmitter<Subject>();
   customErrorMessages: ErrorMessage[] = [
@@ -39,7 +45,13 @@ export class AltaMateriaComponent implements OnInit {
       this.listaProfes = data.filter((profe) => profe.type == 'Professor');
     });
   }
-
+  obtieneImagen_uno(e) {
+    this.imagen_uno = e.result;
+  }
+  archivoSubir_uno(e) {
+    this.subirImagen_uno = e;
+    this.user_img_1.emit(e);
+  }
   ngOnInit(): void {}
 
   onSubmit() {
@@ -49,6 +61,7 @@ export class AltaMateriaComponent implements OnInit {
       quotas: this.formRegister.value.Quotas,
       profesor: this.professor,
       students: [],
+      image: this.imagen_uno,
     };
     this.subjectRegister.emit(subject);
   }
@@ -58,6 +71,5 @@ export class AltaMateriaComponent implements OnInit {
   }
   getProfessor(profe) {
     this.professor = profe;
-    console.log(profe);
   }
 }

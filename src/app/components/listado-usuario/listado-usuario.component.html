@@ -14,11 +14,6 @@
       </select>
     </div>
   </form>
-  <app-toast
-    [show]="toastShow"
-    [classes]="toastClasses"
-    [contenido]="comment"
-  ></app-toast>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -54,7 +49,7 @@
           ></ngb-highlight>
         </td>
         <td>
-          <button (click)="deleteUser(usuario)">DEL</button>
+         <img style="width: 25px;" src="../../../assets/images/trash.png" alt="" (click)="deleteUser(usuario)">
         </td>
       </tr>
     </tbody>

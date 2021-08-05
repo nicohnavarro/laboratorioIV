@@ -20,18 +20,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!',{positionClass:'toast-bottom-right'}); 
-  }
   
   getUserLogin(user:User){
     this.authSvc.signIn(user).then(()=>{
-      this.showSuccess();
+      this.toastr.success('Login Successfully', 'Great!',{positionClass:'toast-bottom-right'}); 
       let idCurrentUser = this.authSvc.user.uid;
       this.dbSvc.GetOne('Users',idCurrentUser).then((data)=>{
         this.currentUser= data;
         this.authSvc.user=data;
-        console.log(this.authSvc.user);
         this.router.navigate(['/home']);
       })
     }).catch((e)=>{

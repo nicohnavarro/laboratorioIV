@@ -1,7 +1,6 @@
-<p>agregar-materia works!</p>
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-title">Profile deletion</h4>
+    <h4 class="modal-title" id="modal-title">Agregar Materia</h4>
     <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -13,12 +12,10 @@
     </p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-    <button type="button" ngbAutofocus class="btn btn-danger" (click)="concluirInscripcion()">Ok</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" ngbAutofocus class="btn btn-dark" (click)="concluirInscripcion()">Ok</button>
   </div>
   </ng-template>
-  <app-toast [show]=toastShow [classes]="toastClasses" [contenido]="comment"></app-toast>
-
 
 <app-listado-materia (materiaElegida)="tomaMateria($event,content)" [subjects]=listaMaterias></app-listado-materia>
 

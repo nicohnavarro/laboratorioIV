@@ -1,5 +1,6 @@
-<!-- <div class="materias">
-  <div *ngFor="let materia of materias">
-    <div class="materia">{{materia}}</div>
-  </div>
-</div> -->
+<h3>Listado de Materias</h3>
+<div class="materias">
+  <ul class="list-group" *ngFor="let materia of materias">
+    <li class="list-group-item" (click)="changeSubject(materia)">{{materia}}</li>
+</ul>
+</div>

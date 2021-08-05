@@ -1,3 +1,4 @@
+import { FileService } from './../../data/services/file.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/data/model/user';
@@ -12,44 +13,30 @@ import { DatabaseService } from 'src/app/data/services/database.service';
 export class RegisterComponent implements OnInit {
   comment: string;
   currentUser;
-  constructor(private authSvc: AuthService, private dbSvc: DatabaseService,private toastr:ToastrService) {
+  file_uno: File;
+  constructor(private authSvc: AuthService, private dbSvc: DatabaseService,private toastr:ToastrService,private fileSvc:FileService) {
   }
 
   ngOnInit(): void {}
 
-  
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    GetImgUno(img: File) {
+    this.file_uno = img
   }
 
   async getUserRegister(user: User) {
     let cred = await this.authSvc.signUp(user).catch((err) => {
       this.comment = 'Error' + err.message;
-      this.showSuccess();
+      this.toastr.error(this.comment, 'Error!');
     });
     if (cred) {
       user.id = cred.user.uid;
+      let task_1 = await this.fileSvc.UploadFile(this.file_uno, user.email);
+      user.image = await task_1.ref.getDownloadURL();
       await this.dbSvc.CreateOne(user, 'Users');
-      /*switch (user.type) {
-        case 'Admin':
-          let user_ok = await this.dbSvc.CreateOne(user, 'Admins');
-          console.log(user_ok);
-          break;
-        case 'Student':
-          let student = await this.dbSvc.CreateOne(user, 'Students');
-          console.log(student);
-          break;
-        case 'Professor':
-          let professor = await this.dbSvc.CreateOne(user, 'Professors');
-          console.log(professor);
-          break;
 
-        default:
-          break;
-      }*/
     }
 
     this.comment = 'Account created';
-    this.showSuccess();
+    this.toastr.success(this.comment, 'Success!');
   }
 }

@@ -73,6 +73,7 @@ export class FormUsuarioComponent implements OnInit {
   }
   archivoSubir_uno(e) {
     this.subirImagen_uno = e;
+    this.user_img_1.emit(e);
   }
 
   onSubmit() {
@@ -83,6 +84,7 @@ export class FormUsuarioComponent implements OnInit {
       email: this.formRegister.value.Email,
       password: this.formRegister.value.Password,
       type: this.formRegister.value.Type,
+      image: this.imagen_uno,
       isActive: true,
     };
     this.userRegister.emit(user);
@@ -132,5 +134,6 @@ export class FormUsuarioComponent implements OnInit {
 
   onReset() {
     this.formRegister.reset();
+    this.imagen_uno = '/assets/images/user.png';
   }
 }

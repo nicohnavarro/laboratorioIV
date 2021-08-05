@@ -1,1 +1,9 @@
-<p>listado-aprobacion-directa works!</p>
+<h4>Aprobacion Directa</h4>
+<div class="exams">
+  <ul class="list-group" *ngFor="let exam of exams">
+    <li class="list-group-item">
+      <span>Alumno: {{exam.student.email}}</span>
+      <span style="margin-left: 100px;"> Nota: {{exam.nota}}</span>
+    </li>
+</ul>
+</div>

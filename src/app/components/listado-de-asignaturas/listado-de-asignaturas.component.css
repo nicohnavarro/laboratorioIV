@@ -1,0 +1,8 @@
+li:hover{
+  cursor: pointer;
+}
+
+.materias{
+  margin: 2rem auto;
+  width: 70%;
+}
